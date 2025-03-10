@@ -6,56 +6,84 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
+# Detect the operating system
+OS="$(uname -s)"
+case "$OS" in
+    Linux*)     OS="Linux";;
+    Darwin*)    OS="macOS";;
+    CYGWIN*)    OS="Windows";;
+    MINGW*)     OS="Windows";;
+    *)          OS="UNKNOWN"
+esac
+
+# Function to install ngrok
 install_ngrok() {
     echo -e "${GREEN}Installing ngrok...${NC}"
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    if [[ "$OS" == "Linux" ]]; then
         wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
         unzip ngrok-stable-linux-amd64.zip
         sudo mv ngrok /usr/local/bin/
         rm ngrok-stable-linux-amd64.zip
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
+    elif [[ "$OS" == "macOS" ]]; then
         brew install ngrok/ngrok/ngrok
+    elif [[ "$OS" == "Windows" ]]; then
+        echo -e "${YELLOW}Please download ngrok manually from https://ngrok.com/download and add it to your PATH.${NC}"
+        return 1
     else
         echo -e "${RED}Unsupported OS for ngrok installation.${NC}"
-        exit 1
+        return 1
     fi
     echo -e "${GREEN}ngrok installed successfully!${NC}"
 }
 
+# Function to install pyngrok
+install_pyngrok() {
+    echo -e "${GREEN}Installing pyngrok...${NC}"
+    pip install pyngrok
+    echo -e "${GREEN}pyngrok installed successfully!${NC}"
+}
+
+# Function to install SSH
 install_ssh() {
     echo -e "${GREEN}Installing SSH...${NC}"
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    if [[ "$OS" == "Linux" ]]; then
         sudo apt update
         sudo apt install openssh-client -y
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
+    elif [[ "$OS" == "macOS" ]]; then
         brew install openssh
+    elif [[ "$OS" == "Windows" ]]; then
+        echo -e "${YELLOW}SSH is included in Git Bash or WSL. No additional installation is required.${NC}"
     else
         echo -e "${RED}Unsupported OS for SSH installation.${NC}"
-        exit 1
+        return 1
     fi
     echo -e "${GREEN}SSH installed successfully!${NC}"
 }
 
+# Function to install Serveo.net (no installation needed, just SSH)
 install_serveo() {
     echo -e "${GREEN}Serveo.net does not require installation. It uses SSH.${NC}"
 }
 
+# Function to install localhost.run (no installation needed, just SSH)
 install_localhost_run() {
     echo -e "${GREEN}localhost.run does not require installation. It uses SSH.${NC}"
 }
 
+# Function to display the menu
 show_menu() {
     echo -e "${YELLOW}=================================${NC}"
-    echo -e "${BLUE}1. Install ngrok${NC}"
+    echo -e "${BLUE}1. Install ngrok and pyngrok${NC}"
     echo -e "${BLUE}2. Install Serveo.net (requires SSH)${NC}"
     echo -e "${BLUE}3. Install localhost.run (requires SSH)${NC}"
     echo -e "${BLUE}4. Install All${NC}"
     echo -e "${YELLOW}=================================${NC}"
 }
 
+# Main function
 main() {
     echo -e "${GREEN}Welcome to the installation script!${NC}"
-    echo -e "${YELLOW}This script will help you install ngrok, Serveo.net, and localhost.run.${NC}"
+    echo -e "${YELLOW}This script will help you install ngrok, pyngrok, Serveo.net, and localhost.run.${NC}"
 
     show_menu
 
@@ -64,12 +92,13 @@ main() {
 
     case $choice in
         1)
-            echo -e "${GREEN}Do you want to install ngrok? (y/n):${NC}"
+            echo -e "${GREEN}Do you want to install ngrok and pyngrok? (y/n):${NC}"
             read install_ngrok_choice
             if [[ "$install_ngrok_choice" == "y" ]]; then
                 install_ngrok
+                install_pyngrok
             else
-                echo -e "${YELLOW}Skipping ngrok installation.${NC}"
+                echo -e "${YELLOW}Skipping ngrok and pyngrok installation.${NC}"
             fi
             ;;
         2)
@@ -97,6 +126,7 @@ main() {
             read install_all_choice
             if [[ "$install_all_choice" == "y" ]]; then
                 install_ngrok
+                install_pyngrok
                 install_ssh
                 install_serveo
                 install_localhost_run
@@ -113,4 +143,5 @@ main() {
     echo -e "${GREEN}Installation process completed!${NC}"
 }
 
+# Run the main function
 main
