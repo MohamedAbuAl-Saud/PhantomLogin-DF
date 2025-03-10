@@ -272,12 +272,6 @@ If you don’t want to use **ngrok**, you can rely on the following services:
 
 ---
 
-### **License**
-
-This tool is licensed under the [MIT License](LICENSE). Use it responsibly and only for educational or security purposes.
-
----
-
 ### **Disclaimer**
 
 This tool is intended for educational and security purposes only. Do not use it for any illegal or harmful activities. The developer is not responsible for any misuse of the tool.
