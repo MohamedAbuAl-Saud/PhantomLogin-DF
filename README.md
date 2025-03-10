@@ -160,22 +160,97 @@ Ngrok URL: https://abcd1234.ngrok.io/Facebook_login.html
    - Verify that the Telegram Bot Token and Chat ID are correct.
 
 ---
-**PhantomLogin-DF**: 
---- 
-## **What is `pyngrok`?** `pyngrok` is a Python library that allows you to control
-**ngrok** through Python code. It acts as an API for 
-**ngrok**, making it easy to create and manage tunnels programmatically. 
+
+
 ---
-## **Role of `pyngrok` in the tool** 1. **Create a Tunnel**:
-- `pyngrok` is used to create a tunnel between your local machine and the Internet, allowing pages running on `localhost` to be exposed to the outside world.
--  2. **Generate Public Links**: - `pyngrok` creates a public link (e.g. `https://abcd1234.ngrok.io`) that anyone can access.
- 3. **Manage Tunnels**:
- 4. - You can easily manage (open, close, or modify) tunnels using `pyngrok`.
-    -  ---
-    -  ## **Is `pyngrok` necessary?** - **Yes**, if you want to use **ngrok** to view pages on the web.
- - **No**, if you prefer to use other services such as
- -  **Serveo.net** or **localhost.run**, as these services rely on **SSH** and do not require `pyngrok`. --- ## **How to install `pyngrok`** 1. **Install `pyngrok` via `pip`**: ``bash pip install pyngrok``` 2. **Make sure `ngrok` is installed**: - `pyngrok` requires **ngrok** to be installed on your machine. - Download **ngrok** from [here](https://ngrok.com/download) and follow the installation instructions. 3. **Adding the Auth Token**: - After installing **ngrok**, add your token using the following command:
- -  ```bash ngrok authtoken YOUR_AUTH_TOKEN ``` --- ## **Example of using `pyngrok` in the code** ```python from pyngrok import ngrok # Create a tunnel on port 8000 public_url = ngrok.connect(8000) print("Public URL:", public_url) # Close the tunnel ngrok.kill() ``` --- ## **Alternatives to `pyngrok`** If you don't want to use **ngrok**, you can rely on the following services: 1. **Serveo.net**: - It is based on SSH and does not require installing any additional libraries. - It is used via the command: ```bash ssh -R 80:localhost:8000 serveo.net ``` 2. **localhost.run**: - It also relies on SSH. - It is used via the command: ```bash ssh -R 80:localhost:8000 localhost.run ``` --- ## **Conclusion** - `pyngrok` is important if you want to use **ngrok** in the tool. - If you prefer to use other services like **Serveo.net** or **localhost.run**, you do not need `pyngrok`. 
+
+## **What is `pyngrok`?**
+
+`pyngrok` is a Python library that allows you to control **ngrok** through Python code. It acts as a Python wrapper for **ngrok**, making it easy to create and manage tunnels programmatically.
+
+---
+
+## **Role of `pyngrok` in the Tool**
+
+1. **Create a Tunnel**:
+   - `pyngrok` is used to create a tunnel between your local machine and the internet, allowing you to expose pages running on `localhost` to the outside world.
+
+2. **Generate Public Links**:
+   - It generates a public URL (e.g., `https://abcd1234.ngrok.io`) that anyone can access.
+
+3. **Manage Tunnels**:
+   - You can easily manage tunnels (open, close, or modify them) using `pyngrok`.
+
+---
+
+## **Is `pyngrok` Required?**
+
+- **Yes**, if you want to use **ngrok** to expose pages to the internet.
+- **No**, if you prefer to use other services like **Serveo.net** or **localhost.run**, as these services rely on **SSH** and do not require `pyngrok`.
+
+---
+
+## **How to Install `pyngrok`**
+
+1. **Install `pyngrok` via `pip`**:
+   ```bash
+   pip install pyngrok
+   ```
+
+2. **Ensure `ngrok` is Installed**:
+   - `pyngrok` requires **ngrok** to be installed on your system.
+   - Download **ngrok** from [here](https://ngrok.com/download) and follow the installation instructions.
+
+3. **Add Your Auth Token**:
+   - After installing **ngrok**, add your auth token using the following command:
+     ```bash
+     ngrok authtoken YOUR_AUTH_TOKEN
+     ```
+
+---
+
+## **Example of Using `pyngrok` in Code**
+
+```python
+from pyngrok import ngrok
+
+# Create a tunnel on port 8000
+public_url = ngrok.connect(8000)
+print("Public URL:", public_url)
+
+# Close the tunnel
+ngrok.kill()
+```
+
+---
+
+## **Alternatives to `pyngrok`**
+
+If you don’t want to use **ngrok**, you can rely on the following services:
+
+1. **Serveo.net**:
+   - Relies on SSH and does not require any additional libraries.
+   - Use it with the following command:
+     ```bash
+     ssh -R 80:localhost:8000 serveo.net
+     ```
+
+2. **localhost.run**:
+   - Also relies on SSH.
+   - Use it with the following command:
+     ```bash
+     ssh -R 80:localhost:8000 localhost.run
+     ```
+
+---
+
+## **Conclusion**
+
+- `pyngrok` is essential if you want to use **ngrok** in the tool.
+- If you prefer to use other services like **Serveo.net** or **localhost.run**, you do not need `pyngrok`.
+
+---
+  
 ---
 
 ### **Developer Information**
