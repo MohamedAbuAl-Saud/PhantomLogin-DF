@@ -221,13 +221,6 @@ print("Public URL:", public_url)
 # Close the tunnel
 ngrok.kill()
 ```
-
----
-
-## **Alternatives to `pyngrok`**
-
-If you don’t want to use **ngrok**, you can rely on the following services:
-
 ## Example of required installations: 
 ```
  pip install -r requirements.txt
@@ -240,6 +233,11 @@ Collecting pyngrok==6.0.0
 Installing collected packages: flask, requests, pyngrok
 Successfully installed flask-2.3.2 pyngrok-6.0.0 requests-2.31.0
 ```
+---
+
+## **Alternatives to `pyngrok`**
+
+If you don’t want to use **ngrok**, you can rely on the following services:
 
 1. **Serveo.net**:
    - Relies on SSH and does not require any additional libraries.
