@@ -69,7 +69,7 @@
 2. **Run the Installation Script**:
    Execute the script to install the required tools:
    ```bash
-   ./install.sh
+   bash install.sh
    ```
 
 3. **Follow the Prompts**:
@@ -82,7 +82,7 @@
 1. **Start the Tool**:
    Run the following command to start the tool:
    ```bash
-   ./phantomlogin.sh
+   bash phantomlogin.sh
    ```
 
 2. **Enter Your Telegram Bot Token and Chat ID**:
