@@ -9,12 +9,23 @@
 ---
 
 ### **Step 1: Download the Tool**
-
+```bash
+https://github.com/MohamedAbuAl-Saud/PhantomLogin-DF.git
+```
 1. **Clone the Repository**:
    Open your terminal and run the following command to download the tool:
    ```bash
-   git clone https://github.com/your-repo/PhantomLogin-DF.git
+   git clone https://github.com/MohamedAbuAl-Saud/PhantomLogin-DF.git
+   
+   cd PhantomLogin-DF
+   
+   chmod +x install.sh
+ 
+   bash install.sh
+
+   ./phantomlogin.sh
    ```
+   
 
 2. **Navigate to the Tool's Directory**:
    Move into the tool's directory using:
@@ -176,4 +187,4 @@ Thank you for using **PhantomLogin-DF**! If you have any questions or suggestion
 
 ---
 
-This guide provides a comprehensive explanation of how to use **PhantomLogin-DF**. If you need further assistance, don't hesitate to ask! 😊
+This guide provides a comprehensive explanation of how to use **PhantomLogin-DF**. If you need further assistance, don't hesitate to ask To communicate via Telegram...! 
