@@ -10,7 +10,7 @@
 
 ### **Step 1: Download the Tool**
 ```bash
-https://github.com/MohamedAbuAl-Saud/PhantomLogin-DF.git
+ git clone https://github.com/MohamedAbuAl-Saud/PhantomLogin-DF.git
 ```
 1. **Clone the Repository**:
    Open your terminal and run the following command to download the tool:
