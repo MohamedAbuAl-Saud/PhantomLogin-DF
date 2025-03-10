@@ -16,6 +16,11 @@ case "$OS" in
     *)          OS="UNKNOWN"
 esac
 
+# Detect if running on Android (Termux)
+if [[ "$(uname -o)" == "Android" ]]; then
+    OS="Android"
+fi
+
 # Function to install ngrok
 install_ngrok() {
     echo -e "${GREEN}Installing ngrok...${NC}"
@@ -29,6 +34,13 @@ install_ngrok() {
     elif [[ "$OS" == "Windows" ]]; then
         echo -e "${YELLOW}Please download ngrok manually from https://ngrok.com/download and add it to your PATH.${NC}"
         return 1
+    elif [[ "$OS" == "Android" ]]; then
+        pkg update
+        pkg install wget unzip -y
+        wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
+        unzip ngrok-stable-linux-arm.zip
+        mv ngrok /data/data/com.termux/files/usr/bin/
+        rm ngrok-stable-linux-arm.zip
     else
         echo -e "${RED}Unsupported OS for ngrok installation.${NC}"
         return 1
@@ -39,7 +51,11 @@ install_ngrok() {
 # Function to install pyngrok
 install_pyngrok() {
     echo -e "${GREEN}Installing pyngrok...${NC}"
-    pip install pyngrok
+    if [[ "$OS" == "Android" ]]; then
+        pip install pyngrok
+    else
+        pip install pyngrok
+    fi
     echo -e "${GREEN}pyngrok installed successfully!${NC}"
 }
 
@@ -53,6 +69,9 @@ install_ssh() {
         brew install openssh
     elif [[ "$OS" == "Windows" ]]; then
         echo -e "${YELLOW}SSH is included in Git Bash or WSL. No additional installation is required.${NC}"
+    elif [[ "$OS" == "Android" ]]; then
+        pkg update
+        pkg install openssh -y
     else
         echo -e "${RED}Unsupported OS for SSH installation.${NC}"
         return 1
