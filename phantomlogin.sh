@@ -24,6 +24,7 @@ show_banner() {
 
 show_menu() {
     echo -e "${GREEN}Welcome to PhantomLogin-DF${NC}"
+    echo -e "${RED} The developer is not responsible for any incorrect use of the tool... ${NC}"
     echo -e "${YELLOW}=================================${NC}"
     echo -e "${BLUE}1. Facebook login${NC}"
     echo -e "${BLUE}2. Tik tok login${NC}"
