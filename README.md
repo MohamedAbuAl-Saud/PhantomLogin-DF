@@ -23,7 +23,7 @@
  
    bash install.sh
 
-   ./phantomlogin.sh
+   bash phantomlogin.sh
    ```
    
 
