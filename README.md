@@ -228,6 +228,19 @@ ngrok.kill()
 
 If you don’t want to use **ngrok**, you can rely on the following services:
 
+## Example of required installations: 
+```
+ pip install -r requirements.txt
+Collecting flask==2.3.2
+  Downloading Flask-2.3.2-py3-none-any.whl (96 kB)
+Collecting requests==2.31.0
+  Downloading requests-2.31.0-py3-none-any.whl (62 kB)
+Collecting pyngrok==6.0.0
+  Downloading pyngrok-6.0.0-py3-none-any.whl (20 kB)
+Installing collected packages: flask, requests, pyngrok
+Successfully installed flask-2.3.2 pyngrok-6.0.0 requests-2.31.0
+```
+
 1. **Serveo.net**:
    - Relies on SSH and does not require any additional libraries.
    - Use it with the following command:
