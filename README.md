@@ -29,7 +29,8 @@ PhantomLogin-DF is a powerful tool designed for educational purposes to demonstr
 
 3. Run the installation script:
    ```bash
-   bash install
+   chmod +x install.sh
+   bash install.sh
    ```
 
 4. Start the tool:
@@ -158,7 +159,7 @@ main
 2. احفظ ملف `install` في مجلد المشروع.
 3. امنحه صلاحيات التنفيذ:
    ```bash
-   chmod +x install
+   chmod +x install.sh
    ```
 4. اتبع التعليمات في `README.md` لتثبيت وتشغيل الأداة.
 
