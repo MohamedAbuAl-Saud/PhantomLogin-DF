@@ -136,7 +136,7 @@ instagram_page() {
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Arial', sans-serif; background-color: #fafafa; display: flex; justify-content: center; align-items: center; height: 100vh; }
         .login-container { background-color: #ffffff; border-radius: 10px; width: 360px; padding: 40px 30px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
-        .login-container img { width: 175px; margin-bottom: 25px; border-radius: 50%; } /* جعل الشعار دائري */
+        .login-container img { width: 175px; margin-bottom: 25px; }
         h2 { font-size: 22px; color: #333; margin-bottom: 15px; font-weight: 600; }
         input { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #dbdbdb; border-radius: 5px; font-size: 15px; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
         input:focus { border-color: #4c86ff; box-shadow: 0 0 8px rgba(76, 134, 255, 0.2); }
