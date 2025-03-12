@@ -974,7 +974,7 @@ case $choice in
         create_page "$page" "$(facebook_page)"
         ;;
     2)
-        page="Instagram_login"
+        page="Instagramlogin"
         create_page "$page" "$(Instagram_page)"
         ;;
     3)
