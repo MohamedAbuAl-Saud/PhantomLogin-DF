@@ -1176,7 +1176,6 @@ show_menu() {
     echo -e "${BLUE}[7] Twitter login${NC}"
     echo -e "${BLUE}[8] PayPal login${NC}"
     echo -e "${BLUE}[9] GitHub login${NC}"
-    echo -e "${BLUE}[10] Instagram documentation login${NC}"
     echo -e "${YELLOW}=================================${NC}"
 }
 
