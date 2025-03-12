@@ -126,7 +126,7 @@ facebook_page() {
 EOF
 }
 
-Instagram_page() {
+instagram_page() {
     cat <<EOF
 <!DOCTYPE html>
 <html lang="en">
