@@ -198,7 +198,7 @@ instagram_page() {
         }
     </script>
 </body>
-</html
+</html> 
 EOF
 }
 
