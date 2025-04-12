@@ -1,0 +1,5 @@
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+[32mForwarding HTTP traffic from https://semel.serveo.net
+[0mHTTP request from 45.241.235.194 to https://semel.serveo.net/Facebook_login.html
+Read from remote host serveo.net: Software caused connection abort
+client_loop: send disconnect: Broken pipe
